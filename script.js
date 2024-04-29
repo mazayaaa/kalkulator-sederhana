@@ -1,3 +1,20 @@
+window.onload = function() {
+    var inputs = Array.from(document.querySelectorAll('input[type="number"]'));
+    for (var i = 0; i < inputs.length; i++) {
+        inputs[i].addEventListener('keydown', function(event) {
+            if (event.keyCode === 13) { // 13 is the keyCode for the Enter key
+                event.preventDefault();
+                var nextInput = inputs[inputs.indexOf(this) + 1];
+                if (nextInput) {
+                    nextInput.focus();
+                } else {
+                    calculate()
+                }
+            }
+        });
+    }
+}
+
 function calculate() {
     // var name = (document.getElementById("text").value);
     var num1 = parseFloat(document.getElementById("num1").value);
@@ -26,10 +43,10 @@ function calculate() {
     var result = "Hasil Penjumlahan : " + num1 + " + " + num2 + " + " + num3 + " = " + sum + "<br><br>" +
         "Hasil Pengurangan : " + num1 + " - " + num2 + " - " + num3 + " = " + subtr + "<br><br>" +
         "Hasil Perkalian : " + num1 + " x " + num2 + " x " + num3 + " = " + multi + "<br><br>" +
-        "Nilai Maksimum : " + max + '<br><br>' +
+        "Nilai Maksimum (Modus) : " + max + '<br><br>' +
         "Nilai Minimum : " + min + '<br><br>' +
         "Nilai Median : " + median + '<br><br>' +
-        "Hasil Nilai Rata-Rata : " + mean;
+        "Nilai Rata-Rata : " + mean;
     // "Nama : " + text + "<br><br>" +
     document.getElementById("result").innerHTML = result;
 }
